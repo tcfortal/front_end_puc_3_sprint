@@ -5,14 +5,15 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const Table = styled.table`
-  width: 100%;
+  width: 300%;
   background-color: #fff;
   padding: 20px;
   box-shadow: 0px 0px 5px #ccc;
   border-radius: 5px;
   max-width: 1120px;
-  margin: 20px auto;
   word-break: break-all;
+  margin-top: 20%;
+ 
 `;
 
 export const Thead = styled.thead``;
@@ -53,7 +54,7 @@ const handleEdit = (store) => {
 
 const handleDelete = async (id) => {
     await axios
-      .delete("http://127.0.0.1:5000/store/" + id)
+      .delete("http://127.0.0.1:5005/store/" + id)
     .then(({data}) => {
         const newArray = stores.filter((store) => store.id !== id);
 
@@ -67,13 +68,13 @@ const handleDelete = async (id) => {
 };
 
 
-
     return (
 
         <Table>
             <Thead>
                 <Tr>
                     <Th>Nome</Th>
+                    <Th>Complemento</Th>
                 </Tr>
             </Thead>
             <Tbody>
@@ -81,6 +82,7 @@ const handleDelete = async (id) => {
             {stores.map((item, i) => (
                 <Tr key={i}>
                     <Td width="30%">{item.name}</Td>
+                    <Td width="30%">{item.complemento}</Td>
                 
                     <Td alignCenter width="5%">
                     <FaEdit onClick={() => handleEdit(item)} />
